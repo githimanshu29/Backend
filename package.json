@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+
+  "workspaces": [
+    "services/*",
+    "packages/*"
+  ],
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm start",
+    "dev:auth": "npm run dev --workspace=auth-service"
+  },
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
