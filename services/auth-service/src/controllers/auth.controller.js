@@ -57,7 +57,7 @@ export const registerUser = async (req, res) => {
     const accessToken = generateAccessToken(user._id);
     const refreshToken = generateRefreshToken(user._id);
 
-    // store refresh token in secure cookie, only storing not sending
+    // store refresh token in secure cookie, only storing not sending  The refreshToken is handled automatically by the browser because you set it as a cookie. The frontend JavaScript can't even "see" it (due to httpOnly: true), which is great for security!
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: false, //true in production
@@ -150,7 +150,7 @@ export const login = async (req, res) => {
       role: user.role,
     };
 
-    //send response-> only this response get send ans access token sent in response body only once and recieved byy client and stores it as ✅✅localStorage.setItem("accessToken", token);  Server cannot push token into requests. Because HTTP is stateless.thats Why Server Doesn’t Send It Automatically? ✅✅✅✅✅ Browser can send cookie automatically time but not access token
+    //send response-> only this response get send and access token sent in response body only once and recieved byy client and stores it as ✅✅localStorage.setItem("accessToken", token);  Server cannot push token into requests. Because HTTP is stateless.thats Why Server Doesn’t Send It Automatically? ✅✅✅✅✅ Browser can send cookie automatically time but not access token
 
 
    /*
@@ -204,6 +204,8 @@ export const refreshAccessToken = async (req, res) => {
 
     //verify refresh token means extract the token
     const decoded = jwt.verify(tokenFromCookie, process.env.JWT_REFRESH_SECRET);
+    console.log(`tokenFromCookie: ${tokenFromCookie}`)
+    console.log(`decoded :${decoded} and id:${decoded.userId}`)
 
     const user = await User.findById(decoded.userId);
 
@@ -214,7 +216,7 @@ export const refreshAccessToken = async (req, res) => {
       });
     }
 
-    const newAccessToken = generateAccessToken(user._id);
+    const newAccessToken = generateAccessToken(user._id);// new accessToken generated
     const newRefreshToken = generateRefreshToken(user._id);
 
     user.refreshToken = newRefreshToken;
@@ -248,7 +250,7 @@ export const logoutUser = async (req, res) => {
       const user = await User.findOne({ refreshToken: tokenFromCookie });
 
       if (user) {
-        user.refreshToken = null;
+        user.refreshToken = null;//this makes user logout
         await user.save();
       }
     }

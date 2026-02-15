@@ -11,6 +11,7 @@ export const protect=async(req,res,next)=>{
         Content-Type: application/json
          Authorization: Bearer eyJhbGci... 
         
+         🔥🔥🔥🔥 if token is once sent by client it means obviously user logged in once, this is access token
         */
 
 

@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js"
+import adminRoutes from "./routes/admin.routes.js";
 
 const app=express();
 
@@ -15,5 +16,7 @@ app.get("/health",(req,res)=>{
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/admin",adminRoutes);
+console.log("Admin routes loaded");
 
 export default app;
