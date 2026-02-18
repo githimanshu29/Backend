@@ -43,7 +43,7 @@ export const protect=async(req,res,next)=>{
             })
         }
 
-        req.user=user;
+        req.user=user;// now request contains full user and can given to next middlewares
         next();
     } catch (error) {
         return res.status(401).json({
