@@ -39,6 +39,6 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Order = mongoose.model("Order", orderSchema);
+const Order = mongoose.model("Order", orderSchema);//Creates a Model called Order 👉 That connects to a MongoDB collection called:orders
 
 export default Order;

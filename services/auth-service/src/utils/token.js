@@ -11,13 +11,16 @@ import jwt from "jsonwebtoken";
 */
 
 export const generateAccessToken = (userId) => {
-  return jwt.sign({ userId:userId.toString() }, process.env.JWT_ACCESS_SECRET, {
+  return jwt.sign({ userId:userId.toString(),
+     role: userId.role, }, 
+     process.env.JWT_ACCESS_SECRET, {
     expiresIn: "15m",
   });
 };// The Access Token: A string sent to the client so the frontend can prove to the server who the user is for the next 15 minutes.
 
 export const generateRefreshToken = (userId) => {
-  return jwt.sign({ userId:userId.toString() }, process.env.JWT_REFRESH_SECRET, {
+  return jwt.sign({ userId:userId.toString()
+   }, process.env.JWT_REFRESH_SECRET, {
     expiresIn: "7d",
   });
 };//The Refresh Token: A string stored in a cookie to get a new Access Token later.

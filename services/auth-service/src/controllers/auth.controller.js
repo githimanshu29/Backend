@@ -54,7 +54,7 @@ export const registerUser = async (req, res) => {
 
     // generate tokens
 
-    const accessToken = generateAccessToken(user._id);
+    const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user._id);
 
     // store refresh token in secure cookie, only storing not sending  The refreshToken is handled automatically by the browser because you set it as a cookie. The frontend JavaScript can't even "see" it (due to httpOnly: true), which is great for security!
@@ -129,7 +129,7 @@ export const login = async (req, res) => {
       });
     }
 
-    const accessToken = generateAccessToken(user._id);
+    const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user._id);
 
     //now save refresh token in db
