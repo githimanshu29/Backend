@@ -1,0 +1,114 @@
+1️⃣ WHAT IS AN API GATEWAY?
+
+An API Gateway is:
+
+A single entry point between client and microservices.
+
+Instead of client calling multiple services directly, it calls only ONE server.
+
+2️⃣ WITHOUT API GATEWAY (Bad Architecture)
+
+Client must know every service:
+Client
+   │
+   ├──► Auth Service (localhost:5001)
+   ├──► Order Service (localhost:5002)
+   ├──► Payment Service (localhost:5003)
+   └──► Restaurant Service (localhost:5004)
+
+Problems:
+
+• Client knows internal ports
+• Hard to scale
+• CORS issues
+• Security scattered
+• No centralized logging
+• No rate limiting
+• Tight coupling
+
+
+3️⃣ WITH API GATEWAY (Industry Architecture)
+Client
+   │
+   ▼
+┌──────────────────────┐
+│     API GATEWAY      │  (Port 5000)
+└─────────┬────────────┘
+          │
+   ┌──────┼───────────────┐
+   │      │               │
+   ▼      ▼               ▼
+Auth    Order          Payment
+5001    5002           5003
+CLIENT TALKS ONLY TO localhost:5000
+
+
+5️⃣ WHY API GATEWAY IS IMPORTANT
+
+✅ Centralized Routing
+✅ Security Layer
+✅ Rate Limiting
+✅ Logging
+✅ Request Validation
+✅ Load Balancing
+✅ Hide Internal Architecture
+✅ Versioning Support
+✅ Caching
+✅ Circuit Breaker
+
+
+6️⃣ SECURITY BENEFITS
+
+Without gateway:
+Each microservice must handle:
+
+• Rate limiting
+• IP blocking
+• Logging
+• CORS
+• Header checks
+
+With gateway:
+All security checks happen in ONE place.
+Client
+   │
+   ▼
+API Gateway
+   ├── Rate Limit Check
+   ├── JWT Validation
+   ├── IP Check
+   └── Forward if valid
+
+
+   🔟 ADVANCED FEATURES GATEWAY CAN HANDLE
+
+Aggregation
+Call multiple services and combine response.
+
+Response Transformation
+Modify response before sending to client.
+
+Caching
+Cache popular endpoints.
+
+Circuit Breaker
+If service is down, stop forwarding temporarily.
+
+Retry Mechanism
+Retry failed calls automatically.
+
+Service Discovery
+Automatically detect service locations.
+
+
+1️⃣1️⃣ TYPES OF API GATEWAYS
+
+Custom (Express-based)
+NGINX Reverse Proxy
+Kong
+AWS API Gateway
+Kubernetes Ingress
+Envoy
+
+We are building:
+Custom Express Gateway.

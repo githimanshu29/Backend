@@ -14,7 +14,7 @@ app.get("/health", (req, res)=>{
     });
 });
 
-app.use("/api/orders",orderRoutes);
+app.use("/",orderRoutes);
 
 
 

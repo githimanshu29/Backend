@@ -15,8 +15,8 @@ app.get("/health",(req,res)=>{
     });
 });
 
-app.use("/api/auth", authRoutes);
-app.use("/api/admin",adminRoutes);
+app.use("/", authRoutes);
+app.use("/",adminRoutes);
 console.log("Admin routes loaded");
 
 export default app;
